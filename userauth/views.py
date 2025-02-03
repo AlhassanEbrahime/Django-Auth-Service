@@ -162,6 +162,7 @@ class ResendOTPView(GenericAPIView):
      
 
 class LoginUserView(GenericAPIView):
+    throttle_classes =[AnonRateThrottle]
     serializer_class = LoginSerializer
     def post(self,request):
         serializer = self.serializer_class(data = request.data, context={'request':request})
